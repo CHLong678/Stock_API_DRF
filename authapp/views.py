@@ -19,7 +19,6 @@ from .serializers import (
     AddMoneySerializer,
     PermissionSerializer,
     RolePermissionSerializer,
-    OrderSerializer,
     TransactionSerializer,
     UserSerializer,
     UserStockSerializer,
@@ -33,7 +32,6 @@ from .models import (
     User,
     Permission,
     RolePermission,
-    Order,
     UserStock,
 )
 
