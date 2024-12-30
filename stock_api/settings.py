@@ -146,6 +146,9 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",  # Mặc định yêu cầu xác thực
     ),
     "EXCEPTION_HANDLER": "stocks.utils.custom_exception_handler.custom_exception_handler",
+    # Config PAGINATION
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
 
 # Configuration SIMPLE_JWT

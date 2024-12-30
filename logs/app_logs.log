@@ -11,3 +11,431 @@
 2024-12-30 07:39:14,585 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
 2024-12-30 07:39:19,993 | ERROR    | "POST /api/token/ HTTP/1.1" 500 66
 2024-12-30 07:40:10,862 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 09:52:48,689 | INFO     | Watching for file changes with StatReloader
+2024-12-30 09:54:12,728 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 09:55:46,466 | INFO     | "GET /api/stocks/AAPL/stock-detail/ HTTP/1.1" 200 176
+2024-12-30 09:56:35,456 | INFO     | "GET /api/stocks/AAPL/stock-detail/ HTTP/1.1" 200 176
+2024-12-30 09:56:41,783 | INFO     | "GET /api/stocks/SHB/price/ HTTP/1.1" 200 95276
+2024-12-30 09:57:10,480 | INFO     | "GET /api/stocks/SHB/price/ HTTP/1.1" 200 95276
+2024-12-30 09:57:39,923 | INFO     | "GET /api/stocks/SHB/price/ HTTP/1.1" 200 95276
+2024-12-30 10:01:15,413 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/stock_api/settings.py changed, reloading.
+2024-12-30 10:01:15,787 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:01:50,993 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/stock_api/settings.py changed, reloading.
+2024-12-30 10:04:27,456 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:04:35,728 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 10:04:53,120 | INFO     | "GET /api/stocks/?page=2 HTTP/1.1" 200 1231
+2024-12-30 10:05:07,485 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 10:06:42,008 | INFO     | "GET /api/stocks/?page=2 HTTP/1.1" 200 1231
+2024-12-30 10:08:12,263 | WARNING  | "POST /api/stocks/ HTTP/1.1" 403 92
+2024-12-30 10:08:20,678 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 10:08:21,720 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 10:08:27,240 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 237
+2024-12-30 10:08:35,920 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 242
+2024-12-30 10:08:44,019 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 220
+2024-12-30 10:08:54,383 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 227
+2024-12-30 10:09:10,831 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 262
+2024-12-30 10:09:32,911 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 257
+2024-12-30 10:09:43,282 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 229
+2024-12-30 10:12:17,890 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 10:13:07,608 | INFO     | "GET /api/stocks/market-price/ HTTP/1.1" 200 1252
+2024-12-30 10:13:31,068 | INFO     | "GET /api/stocks/AAPL/stock-detail/ HTTP/1.1" 200 176
+2024-12-30 10:14:02,916 | WARNING  | "GET /api/stocks/3y66/stock-detail/ HTTP/1.1" 404 27
+2024-12-30 10:14:15,044 | INFO     | "GET /api/stocks/section-index/ HTTP/1.1" 200 1440
+2024-12-30 10:15:02,065 | INFO     | "GET /api/stocks/SHB/price/ HTTP/1.1" 200 95276
+2024-12-30 10:17:26,383 | INFO     | "POST /api/stocks/follow/add/ HTTP/1.1" 201 59
+2024-12-30 10:17:46,167 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 10:17:56,090 | INFO     | "POST /api/stocks/follow/add/ HTTP/1.1" 201 64
+2024-12-30 10:18:10,733 | INFO     | "GET /api/stocks/follow/ HTTP/1.1" 200 827
+2024-12-30 10:22:17,587 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 10:22:36,169 | INFO     | "POST /api/orders/ HTTP/1.1" 201 156
+2024-12-30 10:22:49,124 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 343
+2024-12-30 10:27:35,339 | INFO     | "GET /api/stocks/follow/ HTTP/1.1" 200 827
+2024-12-30 10:27:43,521 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 10:27:58,535 | WARNING  | "POST /api/stocks/ HTTP/1.1" 403 92
+2024-12-30 10:28:07,159 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 10:28:09,621 | INFO     | "POST /api/stocks/ HTTP/1.1" 201 243
+2024-12-30 10:30:03,928 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 65
+2024-12-30 10:30:16,972 | INFO     | "GET /api/stocks/follow/ HTTP/1.1" 200 2
+2024-12-30 10:30:20,769 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 10:30:31,638 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 10:30:45,084 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 10:30:48,649 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 343
+2024-12-30 10:31:02,729 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 10:31:26,763 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 32
+2024-12-30 10:32:13,580 | INFO     | "POST /api/orders/ HTTP/1.1" 201 155
+2024-12-30 10:40:20,113 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:40:20,605 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:40:29,956 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:40:30,365 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:40:40,851 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:40:41,183 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:42:41,206 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:42:41,625 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:42:45,830 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:42:46,030 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:42:48,248 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:42:48,467 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:42:58,891 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:42:59,220 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:43:11,128 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:43:11,509 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:43:15,709 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:43:15,985 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:43:19,253 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:43:19,470 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:43:48,440 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:43:48,838 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:44:54,851 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:45:05,462 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 32
+2024-12-30 10:45:16,730 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:45:37,945 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:45:38,354 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:45:40,969 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:45:49,804 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 343
+2024-12-30 10:46:29,514 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 32
+2024-12-30 10:46:33,510 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:46:51,875 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:46:56,620 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:47:01,021 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:48:21,641 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 343
+2024-12-30 10:48:28,418 | WARNING  | "POST /api/orders/ HTTP/1.1" 400 41
+2024-12-30 10:51:24,676 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:51:25,098 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:51:46,931 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:51:47,316 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:51:49,480 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:51:49,736 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:51:51,950 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:51:52,169 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:51:59,471 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:51:59,743 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:52:00,979 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:52:01,268 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:52:02,467 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:52:02,751 | INFO     | Watching for file changes with StatReloader
+2024-12-30 10:52:07,056 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 10:52:07,298 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:47:55,888 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:48:05,790 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 343
+2024-12-30 16:48:19,792 | INFO     | "POST /api/orders/ HTTP/1.1" 201 156
+2024-12-30 16:56:18,620 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 16:56:19,019 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:56:34,468 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 16:56:34,787 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:56:35,916 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 16:56:36,151 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:56:50,559 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/urls.py changed, reloading.
+2024-12-30 16:56:50,886 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:56:59,234 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/urls.py changed, reloading.
+2024-12-30 16:56:59,540 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:58:23,016 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/urls.py changed, reloading.
+2024-12-30 16:58:23,380 | INFO     | Watching for file changes with StatReloader
+2024-12-30 16:59:19,005 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 55
+2024-12-30 16:59:55,935 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 57
+2024-12-30 17:00:03,857 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:00:07,854 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:00:57,237 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 2317
+2024-12-30 17:01:20,407 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 149
+2024-12-30 17:01:31,284 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:01:54,246 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:01:59,950 | ERROR    | "GET /api/transactions/ HTTP/1.1" 500 66
+2024-12-30 17:02:05,880 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:02:10,444 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:02:33,871 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:02:39,923 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:03:20,403 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:03:32,350 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 149
+2024-12-30 17:03:44,467 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 186
+2024-12-30 17:03:48,822 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 345
+2024-12-30 17:04:02,587 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:04:11,372 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:04:14,375 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 186
+2024-12-30 17:14:31,103 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 17:14:31,489 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:14:35,781 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 17:14:36,062 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:14:40,337 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 17:14:40,626 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:15:44,472 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:15:44,860 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:16:19,004 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:16:50,148 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:16:58,346 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:17:04,578 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:17:15,090 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 40
+2024-12-30 17:17:42,804 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 40
+2024-12-30 17:17:57,776 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 40
+2024-12-30 17:17:58,672 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 40
+2024-12-30 17:18:29,447 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:18:30,122 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:18:51,729 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 149
+2024-12-30 17:18:57,005 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:21:42,578 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 32
+2024-12-30 17:22:15,194 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:22:30,683 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:22:36,874 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:22:40,527 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:24:38,385 | INFO     | "POST /api/signup/ HTTP/1.1" 201 88
+2024-12-30 17:25:30,809 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:25:31,238 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:26:33,860 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:26:37,590 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 149
+2024-12-30 17:26:41,893 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 187
+2024-12-30 17:27:48,045 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:27:55,090 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:28:01,628 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:28:04,276 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:28:40,113 | ERROR    | "POST /api/transactions/ HTTP/1.1" 500 25
+2024-12-30 17:30:01,683 | ERROR    | "GET /api/transactions/ HTTP/1.1" 500 66
+2024-12-30 17:30:14,407 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:30:17,566 | ERROR    | "POST /api/transactions/ HTTP/1.1" 500 25
+2024-12-30 17:31:21,766 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:31:22,134 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:33:50,173 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:33:50,532 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:33:54,899 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:33:55,153 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:34:33,231 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 17:34:33,549 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:34:56,110 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 17:34:56,433 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:35:06,775 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 17:35:07,107 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:35:11,288 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 17:35:11,524 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:35:28,007 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:35:28,319 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:35:42,763 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:35:43,118 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:35:51,414 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:35:51,702 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:35:54,880 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:35:55,121 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:36:00,450 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:36:00,669 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:36:15,449 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:36:25,344 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:36:49,403 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 149
+2024-12-30 17:37:12,205 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:37:23,152 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:37:26,308 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:37:31,678 | ERROR    | "GET /api/transactions/ HTTP/1.1" 500 66
+2024-12-30 17:37:35,353 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:37:51,051 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:38:21,466 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 118
+2024-12-30 17:40:24,179 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:40:24,548 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:42:04,431 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:42:07,452 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:42:11,625 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:42:14,450 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:42:23,021 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 149
+2024-12-30 17:42:27,447 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 17:42:31,085 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:42:39,327 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:42:43,627 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:43:07,704 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:43:15,439 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 198
+2024-12-30 17:43:19,287 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:43:23,030 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 119
+2024-12-30 17:43:28,996 | WARNING  | "POST /api/transactions/ HTTP/1.1" 400 32
+2024-12-30 17:46:06,051 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:46:06,442 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:47:03,060 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:47:09,571 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:47:13,677 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:47:17,631 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 44
+2024-12-30 17:47:25,315 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:47:30,060 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:47:39,322 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:47:47,974 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:47:55,245 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:47:58,405 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:48:03,428 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:48:07,594 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 119
+2024-12-30 17:48:11,120 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:53:40,995 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:53:41,390 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:54:01,022 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:54:08,956 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:54:11,561 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:54:17,467 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 44
+2024-12-30 17:54:22,561 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:54:40,045 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:54:43,082 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:54:46,543 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:54:52,447 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:54:54,879 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:54:57,059 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:54:59,257 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:55:06,228 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:55:09,062 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 119
+2024-12-30 17:55:12,060 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:55:54,464 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:55:56,311 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:56:00,592 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 17:58:08,151 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 17:58:08,545 | INFO     | Watching for file changes with StatReloader
+2024-12-30 17:59:02,211 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:59:04,001 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:59:08,356 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 44
+2024-12-30 17:59:11,761 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:59:14,236 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:59:31,928 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:59:32,755 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:59:34,639 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:59:35,409 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 189
+2024-12-30 17:59:38,119 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 17:59:40,256 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 199
+2024-12-30 17:59:42,766 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 52
+2024-12-30 17:59:46,798 | INFO     | "POST /api/transactions/ HTTP/1.1" 201 148
+2024-12-30 17:59:49,243 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 120
+2024-12-30 18:00:36,852 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:00:37,231 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:00:41,516 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:00:41,726 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:00:43,922 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:00:44,150 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:00:45,333 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:00:45,547 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:01:38,189 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:01:38,577 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:01:48,587 | ERROR    | "GET /api/transactions/ HTTP/1.1" 500 66
+2024-12-30 18:04:26,782 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:04:27,190 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:04:49,914 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:04:50,223 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:04:54,504 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:04:54,743 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:05:17,473 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:05:17,820 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:05:38,488 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:05:38,817 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:05:42,082 | INFO     | "GET /api/transactions/ HTTP/1.1" 200 746
+2024-12-30 18:05:52,701 | INFO     | "GET /api/transactions/ HTTP/1.1" 200 746
+2024-12-30 18:06:01,124 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 18:06:02,120 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 18:06:06,021 | INFO     | "GET /api/marketdata/ HTTP/1.1" 200 52
+2024-12-30 18:06:09,396 | INFO     | "GET /api/userstocks/ HTTP/1.1" 200 188
+2024-12-30 18:06:13,288 | INFO     | "GET /api/transactions/ HTTP/1.1" 200 3267
+2024-12-30 18:09:44,518 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:09:44,969 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:09:59,498 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:09:59,828 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:10:04,073 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:10:04,307 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:10:25,038 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:10:25,368 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:10:41,060 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:10:41,447 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:11:10,343 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:11:10,716 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:11:18,988 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:11:19,289 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:11:28,644 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:11:28,965 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:11:39,368 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:11:39,641 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:11:50,096 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:11:50,430 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:11:53,685 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:11:53,898 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:12:06,317 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:12:06,613 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:12:15,937 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:12:16,228 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:12:28,697 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:12:29,030 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:12:43,620 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/urls.py changed, reloading.
+2024-12-30 18:12:43,952 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:12:51,308 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/urls.py changed, reloading.
+2024-12-30 18:12:51,527 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:13:37,666 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:15:19,348 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:15:22,603 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/urls.py changed, reloading.
+2024-12-30 18:15:22,825 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:15:28,147 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 18:16:20,525 | WARNING  | "GET /api/users/ HTTP/1.1" 404 18118
+2024-12-30 18:17:45,012 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:17:45,383 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:17:47,543 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:17:47,758 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:17:48,933 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:17:49,130 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:18:02,499 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:18:03,712 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:21:33,537 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:21:33,869 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:21:36,011 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:21:36,238 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:21:38,181 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 271
+2024-12-30 18:21:48,693 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 271
+2024-12-30 18:22:42,280 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:22:42,647 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:22:57,191 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:22:57,518 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:23:00,692 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:23:00,917 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:23:06,211 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:23:06,439 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:23:21,989 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:23:22,330 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:23:23,547 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:23:23,762 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:23:28,016 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:23:28,320 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:23:30,272 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 312
+2024-12-30 18:24:01,447 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:24:01,851 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:24:08,162 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/views.py changed, reloading.
+2024-12-30 18:24:08,443 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:24:11,183 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 271
+2024-12-30 18:29:30,395 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 18:29:30,786 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:29:36,041 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 18:29:36,380 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:29:44,660 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 18:29:44,965 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:29:58,456 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 18:29:58,788 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:30:56,443 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/models.py changed, reloading.
+2024-12-30 18:30:56,785 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:32:06,847 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:32:07,276 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:32:20,688 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:32:21,023 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:32:28,298 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:32:28,610 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:32:32,893 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:32:33,181 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:33:05,181 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:33:05,527 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:33:11,878 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:33:12,178 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:33:15,333 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 271
+2024-12-30 18:33:16,705 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 271
+2024-12-30 18:33:27,816 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:33:28,127 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:33:32,402 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:33:32,639 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:33:35,046 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 1534
+2024-12-30 18:33:53,365 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:33:53,676 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:33:55,356 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:33:56,989 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:34:00,068 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:34:00,389 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:34:07,469 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 1534
+2024-12-30 18:36:51,425 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:36:51,808 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:36:52,643 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:36:54,221 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:36:58,129 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:36:58,439 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:37:14,068 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:37:14,489 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:37:15,426 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:37:16,217 | ERROR    | "GET /api/users/profile/ HTTP/1.1" 500 25
+2024-12-30 18:37:28,014 | INFO     | /Users/longcao/Documents/Workspace/stock_project_drf/authapp/serializers.py changed, reloading.
+2024-12-30 18:37:28,393 | INFO     | Watching for file changes with StatReloader
+2024-12-30 18:37:29,694 | INFO     | "GET /api/users/profile/ HTTP/1.1" 200 1504

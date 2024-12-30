@@ -5,11 +5,10 @@ from .views import (
     AccountView,
     PermissionView,
     RolePermissionView,
-    OrderViewSet,
-    TransactionViewSet,
+    UserDetailViewSet,
     MarketDataViewSet,
     UserStockViewSet,
-    ExecuteOrderViewSet,
+    TransactionBuySellViewSet,
 )
 from django.urls import include, path
 
@@ -19,11 +18,10 @@ router = DefaultRouter()
 router.register(r"permissions", PermissionView, basename="permissions")
 router.register(r"role-permissions", RolePermissionView, basename="role_permissions")
 router.register(r"roles", RoleView, basename="roles")
-router.register(r"orders", OrderViewSet, basename="order")
-router.register(r"execute-orders", ExecuteOrderViewSet, basename="execute-order")
-router.register(r"transactions", TransactionViewSet, basename="transaction")
+router.register(r"transactions", TransactionBuySellViewSet, basename="transaction")
 router.register(r"marketdata", MarketDataViewSet, basename="market-data")
 router.register(r"userstocks", UserStockViewSet, basename="user-stock")
+router.register(r"users", UserDetailViewSet, basename="user-detail")
 
 urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
