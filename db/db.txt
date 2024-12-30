@@ -1,0 +1,98 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table stocks {
+  id char [primary key]
+  name string
+  marketPrice float
+  sectionIndex string
+  details json
+  created_at datetime
+  updated_at datetime
+}
+
+
+Table users {
+  id integer [increment, pk]
+  username varchar unique
+  password varchar
+  role_id varchar
+  stocks_followed list
+  account_balance decimal
+  created_at datetime
+  updated_at datetime
+}
+
+Table users_stocks_followed {
+  id integer [increment, pk]
+  user_id integer [primary key]
+  stock_id varchar [primary key]
+}
+
+Table user_stock {
+  id integer [increment]
+  user_id interger [primary key]
+  stock_id char [primary key]
+  quantity integer
+
+}
+
+Table role {
+  id integer [increment, pk]
+  name varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table permission {
+  id integer [increment, pk]
+  name varchar
+  description varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table role_permission {
+  id integer [increment, pk]
+  role_id integer [pk]
+  permission_id integer [pk]
+}
+
+Table transaction{
+  id integer [increment, pk]
+  user_id integer
+  stock_id char 
+  transaction_type char
+  quantity integer
+  price decimal
+  status char
+  transaction_date datetime
+  can_sell_date datetime
+}
+
+Table market_data {
+  id integer [increment]
+  user_id integer
+  stock_id char
+  quantity integer
+  price decimal
+  transaction integer
+  status char
+}
+
+Ref: role.id < role_permission.role_id
+Ref: permission.id < role_permission.permission_id
+
+Ref: users.id < users_stocks_followed.user_id
+Ref: stocks.id < users_stocks_followed.stock_id
+
+Ref: users.id < user_stock.user_id
+Ref: stocks.id < user_stock.stock_id
+
+Ref: users.id < transaction.user_id
+Ref: stocks.id < transaction.user_id
+
+Ref: users.role_id > role.id
+
+Ref: stocks.id < market_data.stock_id
+Ref: users.id < market_data.user_id

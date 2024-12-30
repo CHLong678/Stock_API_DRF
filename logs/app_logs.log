@@ -1,0 +1,13 @@
+2024-12-30 07:33:42,794 | INFO     | django.utils.autoreload   | Watching for file changes with StatReloader
+2024-12-30 07:33:51,505 | INFO     | django.server             | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 07:35:42,506 | INFO     | django.server             | "GET /api/stocks/ HTTP/1.1" 200 3376
+2024-12-30 07:36:01,415 | INFO     | django.utils.autoreload   | /Users/longcao/Documents/Workspace/stock_project_drf/stock_api/settings.py changed, reloading.
+2024-12-30 07:36:01,937 | INFO     | django.utils.autoreload   | Watching for file changes with StatReloader
+2024-12-30 07:38:55,127 | INFO     | django.utils.autoreload   | /Users/longcao/Documents/Workspace/stock_project_drf/stock_api/settings.py changed, reloading.
+2024-12-30 07:38:55,561 | INFO     | Watching for file changes with StatReloader
+2024-12-30 07:38:59,018 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 3376
+2024-12-30 07:39:05,790 | INFO     | "GET /api/stocks HTTP/1.1" 301 0
+2024-12-30 07:39:05,858 | INFO     | "GET /api/stocks/ HTTP/1.1" 200 3376
+2024-12-30 07:39:14,585 | INFO     | "POST /api/token/ HTTP/1.1" 200 483
+2024-12-30 07:39:19,993 | ERROR    | "POST /api/token/ HTTP/1.1" 500 66
+2024-12-30 07:40:10,862 | INFO     | "POST /api/token/ HTTP/1.1" 200 483

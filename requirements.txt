@@ -1,0 +1,7 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+djangorestframework-simplejwt[blacklist]
+psycopg2
+requests
+python-json-logger
