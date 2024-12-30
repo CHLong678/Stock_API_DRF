@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-from django.conf import settings
-from pythonjsonlogger import jsonlogger
+from django.conf import settings  # noqa: F401
+from pythonjsonlogger import jsonlogger  # noqa: F401
 import os
 
 

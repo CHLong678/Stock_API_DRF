@@ -317,7 +317,7 @@ class OrderViewSet(viewsets.ViewSet):
                 order.can_execute_date = timezone.now() + timedelta(days=3)
                 order.save()
 
-            transaction_serializer = TransactionSerializer(transaction)
+            transaction_serializer = TransactionSerializer(transaction)  # noqa: F841
             order_serializer = OrderSerializer(order)
             return Response(order_serializer.data, status=status.HTTP_201_CREATED)
 
@@ -438,7 +438,7 @@ class ExecuteOrderViewSet(viewsets.ViewSet):
                     price=order.price,
                     transaction_date=timezone.now(),
                 )
-                market_data_serializer = MarketDataSerializer(market_data)
+                market_data_serializer = MarketDataSerializer(market_data)  # noqa: F841
 
             order.status = "COMPLETED"
             order.save()
