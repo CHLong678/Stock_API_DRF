@@ -8,6 +8,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 import requests
 from django.db import transaction
+from rest_framework.pagination import PageNumberPagination
+
 
 from authapp.serializers import BuyStockSerializer
 
@@ -61,8 +63,11 @@ class StockViewSet(viewsets.ViewSet):
 
     def list(self, request):
         stocks = Stock.objects.all()
-        serializer = self.serializer_class(stocks, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        paginator = PageNumberPagination()
+        page = paginator.paginate_queryset(stocks, request)
+        if page is not None:
+            serializer = self.serializer_class(page, many=True)
+            return paginator.get_paginated_response(serializer.data)
 
     @action(detail=False, methods=["get"], url_path="market-price")
     def get_market_price(self, request):

@@ -70,7 +70,9 @@ class User(AbstractBaseUser, BaseModel):
 
 
 class UserStockFollowed(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, related_name="user_stocks_followed", on_delete=models.CASCADE
+    )
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -81,6 +83,7 @@ class UserStock(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
+    purchase_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username} owns {self.quantity} of {self.stock.id}"

@@ -1,6 +1,8 @@
 from django.utils import timezone
 from rest_framework import serializers
 
+from stocks.serializers import StockSerializer
+
 from .models import (
     User,
     Role,
@@ -21,23 +23,6 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = ["id", "name"]
-
-
-class UserSerializer(serializers.ModelSerializer):
-    role = RoleSerializer(read_only=True)
-    password = serializers.CharField(write_only=True, required=True)
-
-    class Meta:
-        model = User
-        fields = [
-            "id",
-            "username",
-            "password",
-            "role",
-            "stocks_followed",
-            "account_balance",
-        ]
-        read_only_fields = ["id", "role"]
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -68,7 +53,8 @@ class SignUpSerializer(serializers.ModelSerializer):
 
 class UserStockFollowedSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
-    stock = serializers.StringRelatedField()
+    # stock = serializers.StringRelatedField()
+    stock = StockSerializer(read_only=True)
     created_at = serializers.DateTimeField(read_only=True)
 
     class Meta:
@@ -166,3 +152,23 @@ class BuyStockSerializer(serializers.Serializer):
     stock_id = serializers.IntegerField()
     quantity = serializers.IntegerField(min_value=1)
     price = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    # role = RoleSerializer(read_only=True)
+    password = serializers.CharField(write_only=True, required=True)
+    stocks_owned = UserStockSerializer(source="userstock_set", many=True)
+    user_stocks_followed = UserStockFollowedSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "username",
+            "password",
+            # "role",
+            "user_stocks_followed",
+            "stocks_owned",
+            "account_balance",
+        ]
+        read_only_fields = ["id"]

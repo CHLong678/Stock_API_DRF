@@ -1,7 +1,7 @@
 from datetime import timedelta
 from django.utils import timezone
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import status
@@ -21,6 +21,7 @@ from .serializers import (
     RolePermissionSerializer,
     OrderSerializer,
     TransactionSerializer,
+    UserSerializer,
     UserStockSerializer,
 )
 from stocks.permissions import IsAdminUser
@@ -259,69 +260,14 @@ class RolePermissionView(viewsets.ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class OrderViewSet(viewsets.ViewSet):
+class UserDetailViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
-    @db_transaction.atomic
-    def create(self, request):
+    @action(detail=False, methods=["get"])
+    def profile(self, request):
         user = request.user
-        serializer = OrderSerializer(data=request.data)
-
-        if serializer.is_valid():
-            order = serializer.save(user=user)
-            stock = order.stock
-            quantity = order.quantity
-            price = order.price
-
-            if order.order_type == "BUY":
-                if user.account_balance < price * quantity:
-                    return Response(
-                        {"error": "Insufficient balance"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-                user.account_balance -= price * quantity
-                user.save()
-
-                transaction = Transaction.objects.create(
-                    user=user,
-                    stock=stock,
-                    transaction_type="BUY",
-                    quantity=quantity,
-                    price=price,
-                    status="PENDING",
-                    transaction_date=timezone.now(),
-                )
-
-                order.can_execute_date = timezone.now() + timedelta(days=3)
-                order.save()
-
-            elif order.order_type == "SELL":
-                user_stock = UserStock.objects.filter(user=user, stock=stock).first()
-                if not user_stock or user_stock.quantity < quantity:
-                    return Response(
-                        {"error": "Not enough stock to sell"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-                transaction = Transaction.objects.create(
-                    user=user,
-                    stock=stock,
-                    transaction_type="SELL",
-                    quantity=quantity,
-                    price=price,
-                    status="PENDING",
-                    transaction_date=timezone.now(),
-                )
-
-                order.can_execute_date = timezone.now() + timedelta(days=3)
-                order.save()
-
-            transaction_serializer = TransactionSerializer(transaction)  # noqa: F841
-            order_serializer = OrderSerializer(order)
-            return Response(order_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 
 class TransactionViewSet(viewsets.ReadOnlyModelViewSet):
@@ -339,17 +285,9 @@ class TransactionViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class MarketDataViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Get information about stock on market
-    """
-
-    permission_classes = [IsAuthenticated]
-
-    queryset = MarketData.objects.all()
+    queryset = MarketData.objects.filter(transaction_type="SELL")
     serializer_class = MarketDataSerializer
-
-    def get_queryset(self):
-        return MarketData.objects.filter(user=self.request.user)
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class UserStockViewSet(viewsets.ReadOnlyModelViewSet):
@@ -366,87 +304,149 @@ class UserStockViewSet(viewsets.ReadOnlyModelViewSet):
         return UserStock.objects.filter(user=self.request.user)
 
 
-class ExecuteOrderViewSet(viewsets.ViewSet):
+class TransactionBuySellViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
     @db_transaction.atomic
-    def update(self, request, pk=None):
-        try:
-            order = Order.objects.get(pk=pk)
-        except Order.DoesNotExist:
-            return Response(
-                {"error": "Order not found"}, status=status.HTTP_404_NOT_FOUND
-            )
+    def create(self, request):
+        user = request.user
+        serializer = TransactionSerializer(data=request.data)
 
-        if timezone.now() < order.can_execute_date:
-            return Response(
-                {"error": "Order cannot be executed yet (T+3 rule)"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        if serializer.is_valid():
+            transaction_type = serializer.validated_data["transaction_type"]
+            stock = serializer.validated_data["stock"]
+            quantity = serializer.validated_data["quantity"]
+            price = serializer.validated_data["price"]
 
-        if order.status == "PENDING":
-            if order.order_type == "BUY":
-                transaction = Transaction.objects.create(
-                    user=order.user,
-                    stock=order.stock,
-                    transaction_type="BUY",
-                    quantity=order.quantity,
-                    price=order.price,
-                    status="COMPLETED",
-                    transaction_date=timezone.now(),
-                )
+            transaction = None
 
+            if transaction_type == "BUY":
+                # Kiểm tra số dư tài khoản người mua
+                if user.account_balance < price * quantity:
+                    return Response(
+                        {"error": "Insufficient balance"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                # Lấy danh sách lệnh bán hợp lệ từ MarketData
+                market_data_queryset = MarketData.objects.filter(
+                    stock=stock,
+                    transaction_type="SELL",
+                    price__lte=price,
+                ).order_by("price")
+
+                total_quantity_available = sum(m.quantity for m in market_data_queryset)
+                if total_quantity_available < quantity:
+                    return Response(
+                        {"error": "Not enough matching sell orders on the market"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                total_cost = 0
+                initial_quantity = quantity  # Lưu lại số lượng ban đầu của người mua
+                # Khớp lệnh từng phần với các lệnh bán
+                for sell_order in market_data_queryset:
+                    quantity_to_buy = min(sell_order.quantity, quantity)
+
+                    # Tạo giao dịch cho người mua
+                    transaction = Transaction.objects.create(
+                        user=user,
+                        stock=stock,
+                        transaction_type="BUY",
+                        quantity=quantity_to_buy,
+                        price=sell_order.price,
+                        status="COMPLETED",
+                        transaction_date=timezone.now(),
+                    )
+
+                    # Cập nhật lệnh bán trên MarketData
+                    sell_order.quantity -= quantity_to_buy
+                    if sell_order.quantity == 0:
+                        sell_order.delete()  # Nếu lệnh bán hết, xóa lệnh
+                    else:
+                        sell_order.save()
+
+                    total_cost += quantity_to_buy * sell_order.price
+
+                    quantity -= quantity_to_buy
+                    if quantity == 0:
+                        break
+
+                # Trừ số tiền thực tế từ tài khoản người mua
+                user.account_balance -= total_cost
+                user.save()
+
+                # Cập nhật cổ phiếu cho người mua
                 user_stock, created = UserStock.objects.get_or_create(
-                    user=order.user,
-                    stock=order.stock,
+                    user=user,
+                    stock=stock,
                     defaults={
-                        "quantity": order.quantity,
-                    },
+                        "quantity": initial_quantity
+                    },  # Cập nhật theo số lượng ban đầu
                 )
-
                 if not created:
-                    user_stock.quantity += order.quantity
+                    user_stock.quantity += initial_quantity
                     user_stock.save()
 
-            elif order.order_type == "SELL":
-                user_stock = UserStock.objects.filter(
-                    user=order.user, stock=order.stock
-                ).first()
+                # Cập nhật tài khoản người bán
+                for sell_order in market_data_queryset:
+                    if sell_order.transaction_type == "SELL":
+                        seller = sell_order.user
+                        # Cộng tiền vào tài khoản người bán
+                        seller.account_balance += total_cost
+                        seller.save()
 
-                if user_stock.quantity < order.quantity:
+                        # Giảm số lượng cổ phiếu của người bán
+                        user_stock = UserStock.objects.filter(
+                            user=seller, stock=stock
+                        ).first()
+                        if user_stock:
+                            user_stock.quantity -= (
+                                quantity_to_buy  # Giảm theo số lượng đã bán
+                            )
+                            user_stock.save()
+
+            elif transaction_type == "SELL":
+                # Kiểm tra cổ phiếu người dùng sở hữu
+                user_stock = UserStock.objects.filter(user=user, stock=stock).first()
+                if not user_stock or user_stock.quantity < quantity:
                     return Response(
                         {"error": "Not enough stock to sell"},
                         status=status.HTTP_400_BAD_REQUEST,
                     )
 
-                user_stock.quantity -= order.quantity
-                user_stock.save()
+                # Kiểm tra thời gian mua (T+3)
+                if timezone.now() < user_stock.purchase_date + timedelta(days=3):
+                    return Response(
+                        {"error": "Cannot sell stock before T+3"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
 
-                transaction = Transaction.objects.create(
-                    user=order.user,
-                    stock=order.stock,
+                # Tạo lệnh bán vào MarketData, không cộng tiền ngay
+                MarketData.objects.create(
+                    user=user,
+                    stock=stock,
                     transaction_type="SELL",
-                    quantity=order.quantity,
-                    price=order.price,
-                    status="COMPLETED",
+                    quantity=quantity,
+                    price=price,
                     transaction_date=timezone.now(),
                 )
 
-                market_data = MarketData.objects.create(
-                    user=order.user,
-                    stock=order.stock,
-                    transaction_type="SELL",
-                    quantity=order.quantity,
-                    price=order.price,
-                    transaction_date=timezone.now(),
+                return Response(
+                    {"message": "Sell order placed successfully"},
+                    status=status.HTTP_201_CREATED,
                 )
-                market_data_serializer = MarketDataSerializer(market_data)  # noqa: F841
 
-            order.status = "COMPLETED"
-            order.save()
+            if transaction:
+                transaction_serializer = TransactionSerializer(transaction)
+                return Response(
+                    transaction_serializer.data, status=status.HTTP_201_CREATED
+                )
 
-            transaction_serializer = TransactionSerializer(transaction)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            return Response(transaction_serializer.data, status=status.HTTP_200_OK)
-
-        return Response(
-            {"error": "Order already processed"}, status=status.HTTP_400_BAD_REQUEST
-        )
+    def get(self, request):
+        user = request.user
+        transactions = Transaction.objects.filter(user=user)
+        transaction_serializer = TransactionSerializer(transactions, many=True)
+        return Response(transaction_serializer.data, status=status.HTTP_200_OK)

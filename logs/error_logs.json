@@ -105,3 +105,297 @@
     "server_time": "30/Dec/2024 07:39:19",
     "status_code": 500
 }
+{
+    "asctime": "2024-12-30 17:01:59,949",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/transactions/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/transactions/'>"
+}
+{
+    "asctime": "2024-12-30 17:01:59,950",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/transactions/ HTTP/1.1\" 500 66",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=5, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 51192)>",
+    "server_time": "30/Dec/2024 17:01:59",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 17:28:40,112",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/transactions/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: POST '/api/transactions/'>"
+}
+{
+    "asctime": "2024-12-30 17:28:40,113",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"POST /api/transactions/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=8, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 51999)>",
+    "server_time": "30/Dec/2024 17:28:40",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 17:30:01,676",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/transactions/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/transactions/'>"
+}
+{
+    "asctime": "2024-12-30 17:30:01,683",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/transactions/ HTTP/1.1\" 500 66",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=9, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 52075)>",
+    "server_time": "30/Dec/2024 17:30:01",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 17:30:17,565",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/transactions/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: POST '/api/transactions/'>"
+}
+{
+    "asctime": "2024-12-30 17:30:17,566",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"POST /api/transactions/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=9, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 52075)>",
+    "server_time": "30/Dec/2024 17:30:17",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 17:37:31,677",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/transactions/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/transactions/'>"
+}
+{
+    "asctime": "2024-12-30 17:37:31,678",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/transactions/ HTTP/1.1\" 500 66",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 52369)>",
+    "server_time": "30/Dec/2024 17:37:31",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:01:48,586",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/transactions/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/transactions/'>"
+}
+{
+    "asctime": "2024-12-30 18:01:48,587",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/transactions/ HTTP/1.1\" 500 66",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 53092)>",
+    "server_time": "30/Dec/2024 18:01:48",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:18:02,498",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:18:02,499",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 53586)>",
+    "server_time": "30/Dec/2024 18:18:02",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:18:03,711",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:18:03,712",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 53586)>",
+    "server_time": "30/Dec/2024 18:18:03",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:33:55,356",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:33:55,356",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 54092)>",
+    "server_time": "30/Dec/2024 18:33:55",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:33:56,989",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:33:56,989",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 54092)>",
+    "server_time": "30/Dec/2024 18:33:56",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:36:52,642",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:36:52,643",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=7, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 54174)>",
+    "server_time": "30/Dec/2024 18:36:52",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:36:54,221",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:36:54,221",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=7, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 54174)>",
+    "server_time": "30/Dec/2024 18:36:54",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:37:15,425",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:37:15,426",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 54206)>",
+    "server_time": "30/Dec/2024 18:37:15",
+    "status_code": 500
+}
+{
+    "asctime": "2024-12-30 18:37:16,216",
+    "levelname": "ERROR",
+    "name": "django.request",
+    "message": "Internal Server Error: /api/users/profile/",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/utils/log.py",
+    "lineno": 248,
+    "status_code": 500,
+    "request": "<WSGIRequest: GET '/api/users/profile/'>"
+}
+{
+    "asctime": "2024-12-30 18:37:16,217",
+    "levelname": "ERROR",
+    "name": "django.server",
+    "message": "\"GET /api/users/profile/ HTTP/1.1\" 500 25",
+    "pathname": "/Users/longcao/Documents/Workspace/stock_project_drf/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py",
+    "lineno": 213,
+    "request": "<socket.socket fd=6, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000), raddr=('127.0.0.1', 54206)>",
+    "server_time": "30/Dec/2024 18:37:16",
+    "status_code": 500
+}
