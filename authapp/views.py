@@ -319,14 +319,14 @@ class TransactionBuySellViewSet(viewsets.ViewSet):
             transaction = None
 
             if transaction_type == "BUY":
-                # Kiểm tra số dư tài khoản người mua
+                # Check account balance of buyer
                 if user.account_balance < price * quantity:
                     return Response(
                         {"error": "Insufficient balance"},
                         status=status.HTTP_400_BAD_REQUEST,
                     )
 
-                # Lấy danh sách lệnh bán hợp lệ từ MarketData
+                # Get valid data in MarketData
                 market_data_queryset = MarketData.objects.filter(
                     stock=stock,
                     transaction_type="SELL",
@@ -341,12 +341,12 @@ class TransactionBuySellViewSet(viewsets.ViewSet):
                     )
 
                 total_cost = 0
-                initial_quantity = quantity  # Lưu lại số lượng ban đầu của người mua
-                # Khớp lệnh từng phần với các lệnh bán
+                initial_quantity = quantity  # Saved initial quantity of buyer
+                # Check valid with sell order
                 for sell_order in market_data_queryset:
                     quantity_to_buy = min(sell_order.quantity, quantity)
 
-                    # Tạo giao dịch cho người mua
+                    # Generate transaction for buyer
                     transaction = Transaction.objects.create(
                         user=user,
                         stock=stock,
@@ -357,10 +357,10 @@ class TransactionBuySellViewSet(viewsets.ViewSet):
                         transaction_date=timezone.now(),
                     )
 
-                    # Cập nhật lệnh bán trên MarketData
+                    # Update info of stock selled in MarketData
                     sell_order.quantity -= quantity_to_buy
                     if sell_order.quantity == 0:
-                        sell_order.delete()  # Nếu lệnh bán hết, xóa lệnh
+                        sell_order.delete()  # if stocks was bought all, delete order
                     else:
                         sell_order.save()
 
@@ -370,42 +370,41 @@ class TransactionBuySellViewSet(viewsets.ViewSet):
                     if quantity == 0:
                         break
 
-                # Trừ số tiền thực tế từ tài khoản người mua
+                # Decrease actual money of buyer
                 user.account_balance -= total_cost
                 user.save()
 
-                # Cập nhật cổ phiếu cho người mua
+                # Update stock of buyer
                 user_stock, created = UserStock.objects.get_or_create(
                     user=user,
                     stock=stock,
-                    defaults={
-                        "quantity": initial_quantity
-                    },  # Cập nhật theo số lượng ban đầu
+                    defaults={"quantity": initial_quantity},
                 )
                 if not created:
                     user_stock.quantity += initial_quantity
                     user_stock.save()
 
-                # Cập nhật tài khoản người bán
+                # Update account for seller
                 for sell_order in market_data_queryset:
                     if sell_order.transaction_type == "SELL":
                         seller = sell_order.user
-                        # Cộng tiền vào tài khoản người bán
+                        # Add money into seller's account balance
                         seller.account_balance += total_cost
                         seller.save()
 
-                        # Giảm số lượng cổ phiếu của người bán
+                        # Decrease stock_quantity of seller
                         user_stock = UserStock.objects.filter(
                             user=seller, stock=stock
                         ).first()
                         if user_stock:
                             user_stock.quantity -= (
-                                quantity_to_buy  # Giảm theo số lượng đã bán
+                                quantity_to_buy  # Decrease based on stock selling
                             )
+
                             user_stock.save()
 
             elif transaction_type == "SELL":
-                # Kiểm tra cổ phiếu người dùng sở hữu
+                # Check stock_quantity of seller
                 user_stock = UserStock.objects.filter(user=user, stock=stock).first()
                 if not user_stock or user_stock.quantity < quantity:
                     return Response(
@@ -413,14 +412,14 @@ class TransactionBuySellViewSet(viewsets.ViewSet):
                         status=status.HTTP_400_BAD_REQUEST,
                     )
 
-                # Kiểm tra thời gian mua (T+3)
+                # Check time T+3
                 if timezone.now() < user_stock.purchase_date + timedelta(days=3):
                     return Response(
                         {"error": "Cannot sell stock before T+3"},
                         status=status.HTTP_400_BAD_REQUEST,
                     )
 
-                # Tạo lệnh bán vào MarketData, không cộng tiền ngay
+                # Generate buy transaction, do not add money at once
                 MarketData.objects.create(
                     user=user,
                     stock=stock,
