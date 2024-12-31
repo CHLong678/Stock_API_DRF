@@ -171,5 +171,15 @@ cython_debug/
 .pypirc
 
 #log files
-.logs
 logs/
+
+# Ignore specific __pycache__ folders
+authapp/migrations/__pycache__/
+authapp/__pycache__/
+stock_api/__pycache__/
+stocks/migrations/__pycache__/
+stocks/utils/__pycache__/
+stocks/__pycache__/
+
+# Ignore compiled Python files
+*.pyc
