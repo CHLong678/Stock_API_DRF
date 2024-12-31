@@ -144,6 +144,10 @@ class MarketData(BaseModel):
     def __str__(self):
         return f"{self.stock.id} - {self.quantity} - {self.price}"
 
+    @property
+    def total_price(self):
+        return self.quantity * self.price
+
 
 class Order(BaseModel):
     ORDER_TYPES = [

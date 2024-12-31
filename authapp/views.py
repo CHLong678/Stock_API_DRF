@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework.exceptions import NotFound
 from rest_framework.decorators import action
+from django.db.models import Sum
 from django.db import transaction as db_transaction
 
 
@@ -33,6 +34,18 @@ from .models import (
     Permission,
     RolePermission,
     UserStock,
+)
+from .repositories.buy_stock_repo import (
+    validate_buyer_balance,
+    validate_market_data,
+    process_transactions,
+    update_user_stock_and_balance,
+)
+
+from .repositories.sell_stock_repo import (
+    has_sufficient_stock,
+    is_t_plus_3_restricted,
+    place_sell_order,
 )
 
 
@@ -305,145 +318,133 @@ class UserStockViewSet(viewsets.ReadOnlyModelViewSet):
 class TransactionBuySellViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
-    @db_transaction.atomic
-    def create(self, request):
-        user = request.user
-        serializer = TransactionSerializer(data=request.data)
-
-        if serializer.is_valid():
-            transaction_type = serializer.validated_data["transaction_type"]
-            stock = serializer.validated_data["stock"]
-            quantity = serializer.validated_data["quantity"]
-            price = serializer.validated_data["price"]
-
-            transaction = None
-
-            if transaction_type == "BUY":
-                # Check account balance of buyer
-                if user.account_balance < price * quantity:
-                    return Response(
-                        {"error": "Insufficient balance"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-                # Get valid data in MarketData
-                market_data_queryset = MarketData.objects.filter(
-                    stock=stock,
-                    transaction_type="SELL",
-                    price__lte=price,
-                ).order_by("price")
-
-                total_quantity_available = sum(m.quantity for m in market_data_queryset)
-                if total_quantity_available < quantity:
-                    return Response(
-                        {"error": "Not enough matching sell orders on the market"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-                total_cost = 0
-                initial_quantity = quantity  # Saved initial quantity of buyer
-                # Check valid with sell order
-                for sell_order in market_data_queryset:
-                    quantity_to_buy = min(sell_order.quantity, quantity)
-
-                    # Generate transaction for buyer
-                    transaction = Transaction.objects.create(
-                        user=user,
-                        stock=stock,
-                        transaction_type="BUY",
-                        quantity=quantity_to_buy,
-                        price=sell_order.price,
-                        status="COMPLETED",
-                        transaction_date=timezone.now(),
-                    )
-
-                    # Update info of stock selled in MarketData
-                    sell_order.quantity -= quantity_to_buy
-                    if sell_order.quantity == 0:
-                        sell_order.delete()  # if stocks was bought all, delete order
-                    else:
-                        sell_order.save()
-
-                    total_cost += quantity_to_buy * sell_order.price
-
-                    quantity -= quantity_to_buy
-                    if quantity == 0:
-                        break
-
-                # Decrease actual money of buyer
-                user.account_balance -= total_cost
-                user.save()
-
-                # Update stock of buyer
-                user_stock, created = UserStock.objects.get_or_create(
-                    user=user,
-                    stock=stock,
-                    defaults={"quantity": initial_quantity},
-                )
-                if not created:
-                    user_stock.quantity += initial_quantity
-                    user_stock.save()
-
-                # Update account for seller
-                for sell_order in market_data_queryset:
-                    if sell_order.transaction_type == "SELL":
-                        seller = sell_order.user
-                        # Add money into seller's account balance
-                        seller.account_balance += total_cost
-                        seller.save()
-
-                        # Decrease stock_quantity of seller
-                        user_stock = UserStock.objects.filter(
-                            user=seller, stock=stock
-                        ).first()
-                        if user_stock:
-                            user_stock.quantity -= (
-                                quantity_to_buy  # Decrease based on stock selling
-                            )
-
-                            user_stock.save()
-
-            elif transaction_type == "SELL":
-                # Check stock_quantity of seller
-                user_stock = UserStock.objects.filter(user=user, stock=stock).first()
-                if not user_stock or user_stock.quantity < quantity:
-                    return Response(
-                        {"error": "Not enough stock to sell"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-                # Check time T+3
-                if timezone.now() < user_stock.purchase_date + timedelta(days=3):
-                    return Response(
-                        {"error": "Cannot sell stock before T+3"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
-
-                # Generate buy transaction, do not add money at once
-                MarketData.objects.create(
-                    user=user,
-                    stock=stock,
-                    transaction_type="SELL",
-                    quantity=quantity,
-                    price=price,
-                    transaction_date=timezone.now(),
-                )
-
-                return Response(
-                    {"message": "Sell order placed successfully"},
-                    status=status.HTTP_201_CREATED,
-                )
-
-            if transaction:
-                transaction_serializer = TransactionSerializer(transaction)
-                return Response(
-                    transaction_serializer.data, status=status.HTTP_201_CREATED
-                )
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request):
+    def list(self, request):
         user = request.user
         transactions = Transaction.objects.filter(user=user)
         transaction_serializer = TransactionSerializer(transactions, many=True)
         return Response(transaction_serializer.data, status=status.HTTP_200_OK)
+
+    @db_transaction.atomic
+    @action(detail=False, methods=["post"], url_path="sell")
+    def sell(self, request):
+        user = request.user
+        serializer = TransactionSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        stock = serializer.validated_data["stock"]
+        quantity = serializer.validated_data["quantity"]
+        price = serializer.validated_data["price"]
+
+        # Validate stock availability
+        if not has_sufficient_stock(user, stock, quantity):
+            return Response(
+                {"error": "Not enough stock to sell"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Validate T+3 rule
+        if is_t_plus_3_restricted(user, stock):
+            return Response(
+                {"error": "Cannot sell stock before T+3"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Place the sell order
+        place_sell_order(user, stock, quantity, price)
+
+        return Response(
+            {"message": "Sell order placed successfully"},
+            status=status.HTTP_201_CREATED,
+        )
+
+    @action(detail=True, methods=["post"])
+    def cancel_sell(self, request, order_id):
+        user = request.user
+        print(f"User: {user}, Order ID: {order_id}")
+
+        # Find the sell_order
+        try:
+            sell_order = MarketData.objects.get(
+                id=order_id, user=user, transaction_type="SELL"
+            )
+            print(sell_order)
+        except MarketData.DoesNotExist:
+            return Response(
+                {
+                    "error": "Sell order not found or you are not the owner of this order"
+                },
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        # Check if the sell_order had been bought
+        if MarketData.objects.filter(
+            stock=sell_order.stock, transaction_type="BUY", price=sell_order.price
+        ).exists():
+            return Response(
+                {
+                    "error": "Cannot cancel sell order because it has already been bought"
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Cancel sell_order if no one buy
+        sell_order.delete()
+
+        return Response(
+            {"message": "Sell order cancelled successfully"},
+            status=status.HTTP_200_OK,
+        )
+
+    @db_transaction.atomic
+    @action(detail=False, methods=["post"], url_path="buy")
+    def buy(self, request):
+        user = request.user
+        serializer = TransactionSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        stock = serializer.validated_data["stock"]
+        quantity = serializer.validated_data["quantity"]
+        price = serializer.validated_data["price"]
+
+        # Validate buyer's balance
+        total_cost = price * quantity
+        error = validate_buyer_balance(user, total_cost)
+        if error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate market data
+        error, market_data_queryset = validate_market_data(stock, price, quantity)
+        if error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+
+        # Process transactions for both buyer and seller
+        total_cost, initial_quantity, buyer_transactions, seller_transactions = (
+            process_transactions(user, stock, quantity, price, market_data_queryset)
+        )
+
+        # Update stocks and balances
+        update_user_stock_and_balance(
+            user,
+            stock,
+            initial_quantity,
+            total_cost,
+            buyer_transactions,
+            seller_transactions,
+        )
+
+        # Serialize transactions
+        buyer_transaction_serializer = TransactionSerializer(
+            buyer_transactions, many=True
+        )
+        seller_transaction_serializer = TransactionSerializer(
+            seller_transactions, many=True
+        )
+
+        return Response(
+            {"buyer_transactions": buyer_transaction_serializer.data},
+            status=status.HTTP_201_CREATED,
+        )
