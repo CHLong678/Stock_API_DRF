@@ -55,6 +55,14 @@ def process_transactions(user, stock, quantity, price, market_data_queryset):
         )
         seller_transactions.append(seller_transaction)
 
+        # Update seller's UserStock
+        seller_stock = UserStock.objects.get(user=sell_order.user, stock=stock)
+        if seller_stock.sold_quantity < quantity_to_buy:
+            raise ValueError("Sold quantity mismatch during transaction")
+
+        seller_stock.sold_quantity -= quantity_to_buy
+        seller_stock.save()
+
         # Update sell order
         sell_order.quantity -= quantity_to_buy
         if sell_order.quantity == 0:
@@ -76,11 +84,9 @@ def update_user_stock_and_balance(
 ):
     # Update buyer stock
     user_stock, created = UserStock.objects.get_or_create(
-        user=user, stock=stock, defaults={"quantity": initial_quantity}
+        user=user, stock=stock, defaults={"quantity": 0, "sold_quantity": 0}
     )
-    if not created:
-        user_stock.quantity += initial_quantity
-    user_stock.purchased_date = timezone.now()
+    user_stock.quantity += initial_quantity
     user_stock.save()
 
     # Decrease buyer's balance
@@ -92,10 +98,3 @@ def update_user_stock_and_balance(
         seller = transaction.user
         seller.account_balance += transaction.quantity * transaction.price
         seller.save()
-
-        seller_stock, _ = UserStock.objects.get_or_create(
-            user=seller, stock=transaction.stock
-        )
-        seller_stock.quantity -= transaction.quantity
-        seller_stock.purchased_date = timezone.now()
-        seller_stock.save()

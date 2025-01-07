@@ -17,9 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import handler404, handler500
+from utils.custom_exception_handler import custom_404_handler, custom_500_handler
+
+handler404 = custom_404_handler
+handler500 = custom_500_handler
 
 urlpatterns = [
     path("api/", include("authapp.urls")),
     path("api/", include("stocks.urls")),
     path("admin/", admin.site.urls),
+    path("silk/", include("silk.urls")),
 ]

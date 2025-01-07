@@ -83,6 +83,7 @@ class UserStock(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
+    sold_quantity = models.PositiveIntegerField(default=0)
     purchase_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

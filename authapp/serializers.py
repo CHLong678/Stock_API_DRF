@@ -145,7 +145,7 @@ class UserStockSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserStock
-        fields = ["id", "user_id", "username", "stock", "quantity"]
+        fields = ["id", "user_id", "username", "stock", "quantity", "sold_quantity"]
 
 
 class BuyStockSerializer(serializers.Serializer):
@@ -172,3 +172,22 @@ class UserSerializer(serializers.ModelSerializer):
             "account_balance",
         ]
         read_only_fields = ["id"]
+
+
+class SellStockSerializer(serializers.Serializer):
+    stock_id = serializers.CharField(max_length=255)
+    quantity = serializers.IntegerField(min_value=1)
+
+    def validate(self, attrs):
+        stock_id = attrs.get("stock_id")
+        quantity = attrs.get("quantity")
+        user = self.context["request"].user
+
+        if not UserStock.objects.filter(user=user, stock__id=stock_id).exists():
+            raise serializers.ValidationError("You do not own this stock.")
+
+        user_stock = UserStock.objects.get(user=user, stock__id=stock_id)
+        if quantity > user_stock.quantity:
+            raise serializers.ValidationError("Insufficient stock quantity to sell.")
+
+        return attrs

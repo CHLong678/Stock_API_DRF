@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
@@ -6,6 +7,7 @@ from .views import StockViewSet, UserStockFollowViewSet, StockPriceView
 
 router = DefaultRouter()
 router.register(r"stocks", StockViewSet, basename="stocks")
+
 
 urlpatterns = [
     path(
@@ -22,7 +24,7 @@ urlpatterns = [
     ),
     path(
         "stocks/<symbol>/price/",
-        StockPriceView.as_view(),  # Get current info stocks
+        StockPriceView.as_view({"get": "get_stock_price"}),  # Get current info stocks
         name="get_stock_price",
     ),
     path("", include(router.urls)),

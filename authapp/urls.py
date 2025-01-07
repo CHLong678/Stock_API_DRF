@@ -20,7 +20,7 @@ router.register(r"role-permissions", RolePermissionView, basename="role_permissi
 router.register(r"roles", RoleView, basename="roles")
 router.register(r"transactions", TransactionBuySellViewSet, basename="transactions")
 router.register(r"marketdata", MarketDataViewSet, basename="market-data")
-router.register(r"userstocks", UserStockViewSet, basename="user-stock")
+router.register(r"user-stocks", UserStockViewSet, basename="user-stock")
 router.register(r"users", UserDetailViewSet, basename="user-detail")
 
 urlpatterns = [

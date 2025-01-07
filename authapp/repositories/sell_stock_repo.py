@@ -1,37 +1,54 @@
 from authapp.models import MarketData, UserStock
-from django.db.models import Sum
 from datetime import timedelta
 from django.utils import timezone
+from django.db.models import F
 
 
-def has_sufficient_stock(user, stock, quantity):
-    user_stock = UserStock.objects.filter(user=user, stock=stock).first()
-    if not user_stock or user_stock.quantity < quantity:
-        return False
+def fetch_user_stock(user, stock):
+    """
+    Fetch the UserStock object and lock it for update.
+    """
+    try:
+        return UserStock.objects.select_for_update().get(user=user, stock=stock)
+    except UserStock.DoesNotExist:
+        return None
 
-    total_stocks_in_sell_order = (
-        MarketData.objects.filter(stock=stock, transaction_type="SELL").aggregate(
-            total_quantity=Sum("quantity")
-        )["total_quantity"]
-        or 0
-    )
 
-    if total_stocks_in_sell_order + quantity > user_stock.quantity:
-        return False
-
-    return True
+def has_sufficient_stock(user_stock, quantity):
+    """
+    Check if the user has enough stock to sell.
+    """
+    return user_stock.quantity >= quantity
 
 
 def is_t_plus_3_restricted(user, stock):
-    user_stock = UserStock.objects.filter(user=user, stock=stock).first()
-    if user_stock and timezone.now() < user_stock.purchase_date + timedelta(days=3):
+    """
+    Check if the stock cannot be sold due to the T+3 restriction.
+    """
+    purchase_date = (
+        MarketData.objects.filter(user=user, stock=stock, transaction_type="BUY")
+        .order_by("transaction_date")
+        .values_list("transaction_date", flat=True)
+        .first()
+    )
+
+    if purchase_date and timezone.now() < purchase_date + timedelta(days=3):
         return True
     return False
 
 
-def place_sell_order(user, stock, quantity, price):
+def process_sell_order(user_stock, stock, quantity, price):
+    """
+    Update UserStock and create a sell order in MarketData.
+    """
+    # Update UserStock
+    user_stock.quantity = F("quantity") - quantity
+    user_stock.sold_quantity = F("sold_quantity") + quantity
+    user_stock.save()
+
+    # Create the sell order
     MarketData.objects.create(
-        user=user,
+        user=user_stock.user,
         stock=stock,
         transaction_type="SELL",
         quantity=quantity,

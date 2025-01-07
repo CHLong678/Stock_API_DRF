@@ -5,3 +5,5 @@ djangorestframework-simplejwt[blacklist]
 psycopg2
 requests
 python-json-logger
+django-filter
+django-silk
