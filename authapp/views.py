@@ -283,20 +283,7 @@ class TransactionBuySellViewSet(viewsets.ViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Update UserStock:
-        user_stock.quantity = F("quantity") - quantity
-        user_stock.sold_quantity = F("sold_quantity") + quantity
-        user_stock.save()
-
-        # Place the sell order
-        MarketData.objects.create(
-            user=user,
-            stock=stock,
-            transaction_type="SELL",
-            quantity=quantity,
-            price=price,
-            transaction_date=timezone.now(),
-        )
+        process_sell_order(user_stock, stock, quantity, price)
 
         return Response(
             {"message": "Sell order placed successfully"},
