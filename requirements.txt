@@ -2,7 +2,7 @@ django
 djangorestframework
 djangorestframework-simplejwt
 djangorestframework-simplejwt[blacklist]
-psycopg2
+psycopg2-binary
 requests
 python-json-logger
 django-filter

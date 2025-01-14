@@ -183,3 +183,5 @@ stocks/__pycache__/
 
 # Ignore compiled Python files
 *.pyc
+
+/staticfiles

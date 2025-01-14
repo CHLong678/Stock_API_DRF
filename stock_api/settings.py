@@ -89,11 +89,11 @@ WSGI_APPLICATION = "stock_api.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "longcao",
-        "PASSWORD": "",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "USER": os.environ.get("PG_USER", "longcao"),
+        "PASSWORD": os.environ.get("PG_PASSWORD", ""),
+        "NAME": os.environ.get("PG_DB", "postgres"),
+        "PORT": os.environ.get("PG_PORT", "5432"),
+        "HOST": os.environ.get("PG_HOST", "localhost"),
     }
 }
 
