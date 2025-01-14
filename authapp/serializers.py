@@ -102,12 +102,12 @@ class OrderSerializer(serializers.ModelSerializer):
             "order_date",
         ]
 
-    def create(self, validated_data):
-        if "order_date" not in validated_data or validated_data["order_date"] is None:
-            validated_data["order_date"] = timezone.now()
+    # def create(self, validated_data):
+    #     if "order_date" not in validated_data or validated_data["order_date"] is None:
+    #         validated_data["order_date"] = timezone.now()
 
-        order = Order.objects.create(**validated_data)
-        return order
+    #     order = Order.objects.create(**validated_data)
+    #     return order
 
 
 class TransactionSerializer(serializers.ModelSerializer):

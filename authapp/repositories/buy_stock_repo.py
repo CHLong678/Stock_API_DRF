@@ -19,6 +19,7 @@ def validate_market_data(stock, price, quantity):
     total_quantity_available = sum(m.quantity for m in market_data_queryset)
     if total_quantity_available < quantity:
         return {"error": "Not enough matching sell orders on the market"}, None
+
     return None, market_data_queryset
 
 

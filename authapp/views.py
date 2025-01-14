@@ -1,8 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework import status
-from django.utils import timezone
 from rest_framework.permissions import (
     IsAuthenticated,
     AllowAny,
@@ -185,7 +184,12 @@ Admin can control specific role's permissons
 """
 
 
-class RolePermissionView(viewsets.ModelViewSet):
+class RolePermissionView(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    mixins.UpdateModelMixin,
+    viewsets.GenericViewSet,
+):
     permission_classes = [IsAdminUser]
     queryset = RolePermission.objects.all()
     serializer_class = RolePermissionSerializer
@@ -193,23 +197,24 @@ class RolePermissionView(viewsets.ModelViewSet):
 
 class UserDetailViewSet(viewsets.GenericViewSet):
     permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
 
     @action(detail=False, methods=["get"], url_path="profile")
     def profile(self, request):
-        user = request.user
-        serializer = UserSerializer(user)
+        serializer = self.get_serializer(request.user)
         return Response(serializer.data)
 
 
-class TransactionViewSet(BaseUserRelatedViewSet):
-    """
-    Get information user's transaction
-    """
+# class TransactionViewSet(BaseUserRelatedViewSet):
+#     """
+#     Get information user's transaction
+#     """
 
-    serializer_class = TransactionSerializer
-    filterset_fields = ["transaction_type", "stock"]
-    ordering_fields = ["created_at", "amount"]
-    search_fields = ["stock__id"]
+#     queryset = Transaction.objects.all()
+#     serializer_class = TransactionSerializer
+#     filterset_fields = ["transaction_type", "stock"]
+#     ordering_fields = ["created_at", "amount"]
+#     search_fields = ["stock__id"]
 
 
 class MarketDataViewSet(BaseReadOnlyViewSet):
@@ -228,15 +233,21 @@ class UserStockViewSet(BaseUserRelatedViewSet):
     Get information about stocks of one user
     """
 
-    queryset = UserStock.objects.all()
+    queryset = UserStock.objects.select_related("stock")
     serializer_class = UserStockSerializer
     filterset_fields = ["stock"]
     ordering_fields = ["quantity", "updated_at"]
     search_fields = ["stock__id"]
 
 
-class TransactionBuySellViewSet(viewsets.ViewSet):
+class TransactionBuySellViewSet(
+    viewsets.GenericViewSet,
+):
     permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        if self.action == "list":
+            return [AllowAny()]
 
     def list(self, request):
         user = request.user

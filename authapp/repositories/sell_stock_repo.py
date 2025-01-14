@@ -1,7 +1,8 @@
 from authapp.models import MarketData, UserStock
 from datetime import timedelta
 from django.utils import timezone
-from django.db.models import F
+from django.db.models import Min, F
+from django.db import transaction
 
 
 def fetch_user_stock(user, stock):
@@ -25,12 +26,9 @@ def is_t_plus_3_restricted(user, stock):
     """
     Check if the stock cannot be sold due to the T+3 restriction.
     """
-    purchase_date = (
-        MarketData.objects.filter(user=user, stock=stock, transaction_type="BUY")
-        .order_by("transaction_date")
-        .values_list("transaction_date", flat=True)
-        .first()
-    )
+    purchase_date = MarketData.objects.filter(
+        user=user, stock=stock, transaction_type="BUY"
+    ).aggregate(purchase_date=Min("transaction_date"))["purchase_date"]
 
     if purchase_date and timezone.now() < purchase_date + timedelta(days=3):
         return True
@@ -41,17 +39,17 @@ def process_sell_order(user_stock, stock, quantity, price):
     """
     Update UserStock and create a sell order in MarketData.
     """
-    # Update UserStock
-    user_stock.quantity = F("quantity") - quantity
-    user_stock.sold_quantity = F("sold_quantity") + quantity
-    user_stock.save()
+    with transaction.atomic():
+        UserStock.objects.filter(id=user_stock.id).update(
+            quantity=F("quantity") - quantity,
+            sold_quantity=F("sold_quantity") + quantity,
+        )
 
-    # Create the sell order
-    MarketData.objects.create(
-        user=user_stock.user,
-        stock=stock,
-        transaction_type="SELL",
-        quantity=quantity,
-        price=price,
-        transaction_date=timezone.now(),
-    )
+        MarketData.objects.create(
+            user=user_stock.user,
+            stock=stock,
+            transaction_type="SELL",
+            quantity=quantity,
+            price=price,
+            transaction_date=timezone.now(),
+        )
